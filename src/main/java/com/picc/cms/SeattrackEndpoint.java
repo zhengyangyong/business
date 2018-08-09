@@ -17,7 +17,11 @@
 
 package com.picc.cms;
 
+import javax.ws.rs.core.Response.Status;
+
 import org.apache.servicecomb.provider.rest.common.RestSchema;
+import org.apache.servicecomb.swagger.invocation.context.ContextUtils;
+import org.apache.servicecomb.swagger.invocation.context.InvocationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,11 +35,21 @@ public class SeattrackEndpoint {
   //  @RequestMapping(path = "/seat_tracks",method = RequestMethod.POST)
   @PostMapping(path = "/seat_tracks")
   public String createSeatTracks() {
+
+    //customize response status
+    InvocationContext context = ContextUtils.getInvocationContext();
+    context.setStatus(Status.CREATED);
+
     return "seat_tracks";
   }
 
   @PutMapping(path = "/seat_track")
   public int updateSeatTracks(@RequestParam int id) {
+
+    //customize response status
+    InvocationContext context = ContextUtils.getInvocationContext();
+    context.setStatus(Status.ACCEPTED);
+
     return id;
   }
 
