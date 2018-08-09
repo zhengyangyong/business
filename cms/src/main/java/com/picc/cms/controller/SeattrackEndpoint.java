@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.picc.cms;
+package com.picc.cms.controller;
 
 import javax.ws.rs.core.Response.Status;
 

@@ -1,4 +1,4 @@
-package com.picc.cms;
+package com.picc.cms.controller;
 
 import org.apache.servicecomb.provider.rest.common.RestSchema;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -25,27 +25,27 @@ servicecomb:
   #Specifies the highway transport listening IP address.
   highway:
     address: 0.0.0.0:7070
-#  handler:
-#      chain:
-#        Provider:
-#          default: bizkeeper-provider, qps-flowcontrol-provider
-#  isolation:
-#    Provider:
-#      timeout:
-#        enabled: true
-#      timeoutInMilliseconds: 30000
-#      maxConcurrentRequests: 10
-#  circuitBreaker:
-#    Provider:
-#      cms-service:
-#        requestVolumeThreshold: 3
-#        sleepWindowInMilliseconds: 15000
-#  fallbackpolicy:
-#    Provider:
-#      cms-service:
-#        policy: returnnull
-#  flowcontrol:
-#    Provider:
-#      qps:
-#        global:
-#          limit: 10
+  handler:
+    chain:
+      Provider:
+        default: bizkeeper-provider, qps-flowcontrol-provider
+  isolation:
+    Provider:
+      timeout:
+        enabled: true
+      timeoutInMilliseconds: 30000
+      maxConcurrentRequests: 10
+  circuitBreaker:
+    Provider:
+      cms-service:
+        requestVolumeThreshold: 3
+        sleepWindowInMilliseconds: 15000
+  fallbackpolicy:
+    Provider:
+      cms-service:
+        policy: returnnull
+  flowcontrol:
+    Provider:
+      qps:
+        global:
+          limit: 10
