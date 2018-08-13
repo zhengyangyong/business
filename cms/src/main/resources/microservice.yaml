@@ -13,7 +13,7 @@ service_description:
 #The naming rule is as follows: ^[a-zA-Z0-9]+$|^[a-zA-Z0-9][a-zA-Z0-9_-.]*[a-zA-Z0-9]$.
   name: cms-service
 #Indicates a service version
-  version: 1.0.0
+  version: 1.0.1
 servicecomb:
   service:
   #Specifies the service center IP address.
