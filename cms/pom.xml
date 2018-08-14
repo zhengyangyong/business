@@ -77,6 +77,14 @@
       <scope>compile</scope>
     </dependency>
 
+    <dependency>
+      <groupId>com.huawei.gauss.jdbc</groupId>
+      <artifactId>ZenithDriver</artifactId>
+      <scope>system</scope>
+      <version>1.0</version>
+      <systemPath>${project.basedir}\..\lib\com.huawei.gauss.jdbc.ZenithDriver.jar</systemPath>
+    </dependency>
+
   </dependencies>
 
   <!--for package and deploy-->
