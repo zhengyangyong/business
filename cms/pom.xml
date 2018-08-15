@@ -89,7 +89,7 @@
       <groupId>com.huawei.gauss.jdbc</groupId>
       <artifactId>ZenithDriver</artifactId>
       <scope>system</scope>
-      <version>1.0</version>
+      <version>V100R006C10B300</version>
       <systemPath>${project.basedir}\..\libs\com.huawei.gauss.jdbc.ZenithDriver.jar</systemPath>
     </dependency>
 
