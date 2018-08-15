@@ -9,5 +9,5 @@ public interface AccountMapper {
 
   void clear();
 
-  Double queryReduced();
+//  Double queryReduced();
 }

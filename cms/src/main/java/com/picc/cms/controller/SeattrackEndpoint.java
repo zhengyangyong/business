@@ -57,4 +57,9 @@ public class SeattrackEndpoint {
   public int getSeatTracks(@RequestParam int id) {
     return id;
   }
+
+  @GetMapping(path = "/incompleted_seattrack")
+  public String getIncompletedSeattracks() {
+    return "getIncompletedSeattracks";
+  }
 }
