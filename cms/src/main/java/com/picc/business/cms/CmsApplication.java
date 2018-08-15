@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.picc.cms;
+package com.picc.business.cms;
 
 import org.apache.servicecomb.foundation.common.utils.BeanUtils;
 import org.apache.servicecomb.foundation.common.utils.Log4jUtils;

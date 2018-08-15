@@ -21,7 +21,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <parent>
-    <groupId>com.picc</groupId>
+    <groupId>com.picc.business</groupId>
     <artifactId>business</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
@@ -90,7 +90,7 @@
       <artifactId>ZenithDriver</artifactId>
       <scope>system</scope>
       <version>V100R006C10B300</version>
-      <systemPath>${project.basedir}\..\libs\com.huawei.gauss.jdbc.ZenithDriver.jar</systemPath>
+      <systemPath>${project.basedir}/../libs/com.huawei.gauss.jdbc.ZenithDriver.jar</systemPath>
     </dependency>
 
   </dependencies>
@@ -98,6 +98,19 @@
   <!--for package and deploy-->
   <build>
     <plugins>
+      <plugin>
+        <groupId>com.github.odavid.maven.plugins</groupId>
+        <artifactId>mixin-maven-plugin</artifactId>
+        <configuration>
+          <mixins>
+            <mixin>
+              <groupId>com.picc.business</groupId>
+              <artifactId>docker-build-config</artifactId>
+              <version>1.0-SNAPSHOT</version>
+            </mixin>
+          </mixins>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -108,7 +121,7 @@
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
               <!--change to your main class-->
-              <mainClass>com.picc.cms.CmsApplication</mainClass>
+              <mainClass>com.picc.business.cms.CmsApplication</mainClass>
             </manifest>
             <manifestEntries>
               <Class-Path>. </Class-Path>
@@ -143,4 +156,23 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>docker</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.commonjava.maven.plugins</groupId>
+            <artifactId>directory-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>

@@ -19,13 +19,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <groupId>com.picc</groupId>
+  <groupId>com.picc.business</groupId>
   <artifactId>business</artifactId>
   <version>1.0-SNAPSHOT</version>
   <modelVersion>4.0.0</modelVersion>
   <packaging>pom</packaging>
   <modules>
     <module>cms</module>
+    <module>docker-build-config</module>
   </modules>
   
   <properties>
@@ -44,5 +45,28 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.commonjava.maven.plugins</groupId>
+          <artifactId>directory-maven-plugin</artifactId>
+          <version>0.1</version>
+        </plugin>
+        <plugin>
+          <groupId>com.github.odavid.maven.plugins</groupId>
+          <artifactId>mixin-maven-plugin</artifactId>
+          <version>0.1-alpha-39</version>
+          <extensions>true</extensions>
+        </plugin>
+        <plugin>
+          <groupId>io.fabric8</groupId>
+          <artifactId>docker-maven-plugin</artifactId>
+          <version>0.20.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
 </project>
