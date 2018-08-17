@@ -80,6 +80,8 @@
       <artifactId>jta</artifactId>
       <version>1.1</version>
     </dependency>
+
+    <!--gaussdb dependency-->
     <dependency>
       <groupId>com.huawei.gauss.jdbc</groupId>
       <artifactId>ZenithDriver</artifactId>
@@ -87,6 +89,8 @@
       <version>V100R006C10B300</version>
       <systemPath>${project.basedir}/../libs/com.huawei.gauss.jdbc.ZenithDriver.jar</systemPath>
     </dependency>
+
+    <!--&lt;!&ndash;mysql dependency&ndash;&gt;-->
     <!--<dependency>-->
       <!--<groupId>mysql</groupId>-->
       <!--<artifactId>mysql-connector-java</artifactId>-->
@@ -98,19 +102,18 @@
   <!--for package and deploy-->
   <build>
     <plugins>
+      <!--compile version-->
       <plugin>
-        <groupId>com.github.odavid.maven.plugins</groupId>
-        <artifactId>mixin-maven-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
         <configuration>
-          <mixins>
-            <mixin>
-              <groupId>com.picc.business</groupId>
-              <artifactId>docker-build-config</artifactId>
-              <version>1.0-SNAPSHOT</version>
-            </mixin>
-          </mixins>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
+
+      <!--generate jar+libs-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -120,7 +123,6 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <!--change to your main class-->
               <mainClass>com.picc.business.cms.CmsApplication</mainClass>
             </manifest>
             <manifestEntries>
@@ -129,6 +131,8 @@
           </archive>
         </configuration>
       </plugin>
+
+      <!--copy dependency libs-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -145,15 +149,39 @@
           </execution>
         </executions>
       </plugin>
+
+      <!--generate exec jar-->
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>target/bin</outputDirectory>
+              <classifier>exec</classifier>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!--generate docker container-->
+      <plugin>
+        <groupId>com.github.odavid.maven.plugins</groupId>
+        <artifactId>mixin-maven-plugin</artifactId>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <mixins>
+            <mixin>
+              <groupId>com.picc.business</groupId>
+              <artifactId>docker-build-config</artifactId>
+              <version>1.0-SNAPSHOT</version>
+            </mixin>
+          </mixins>
         </configuration>
       </plugin>
+
     </plugins>
   </build>
 
