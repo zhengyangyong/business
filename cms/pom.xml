@@ -101,6 +101,18 @@
 
   <!--for package and deploy-->
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>${project.basedir}/../libs</directory>
+        <targetPath>BOOT-INF/lib/</targetPath>
+        <includes>
+          <include>**/*.jar</include>
+        </includes>
+      </resource>
+    </resources>
     <plugins>
       <!--compile version-->
       <plugin>
@@ -113,56 +125,28 @@
         </configuration>
       </plugin>
 
-      <!--generate jar+libs-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.6</version>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.0.0</version>
         <configuration>
-          <archive>
-            <manifest>
-              <addClasspath>true</addClasspath>
-              <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>com.picc.business.cms.CmsApplication</mainClass>
-            </manifest>
-            <manifestEntries>
-              <Class-Path>. </Class-Path>
-            </manifestEntries>
-          </archive>
+          <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
 
-      <!--copy dependency libs-->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy-dependencies</id>
-            <phase>package</phase>
-            <goals>
-              <goal>copy-dependencies</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>target/lib</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <!--generate exec jar-->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <fork>true</fork>
+          <mainClass>com.picc.business.cms.CmsApplication</mainClass>
+          <outputDirectory>target/bin</outputDirectory>
+        </configuration>
         <executions>
           <execution>
             <goals>
               <goal>repackage</goal>
             </goals>
-            <configuration>
-              <outputDirectory>target/bin</outputDirectory>
-              <classifier>exec</classifier>
-            </configuration>
           </execution>
         </executions>
       </plugin>
