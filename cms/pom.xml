@@ -31,6 +31,10 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.picc.business</groupId>
+      <artifactId>common</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.apache.servicecomb</groupId>
       <artifactId>transport-rest-vertx</artifactId>
     </dependency>
